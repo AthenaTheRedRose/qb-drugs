@@ -136,8 +136,7 @@ local function RequestDelivery()
             ["locationLabel"] = Config.DeliveryLocations[location]["label"],
             ["amount"] = amount,
             ["dealer"] = currentDealer,
-            ["itemData"] = Config.DeliveryItems[item],
-            ["item"] = item
+            ["itemData"] = Config.DeliveryItems[item]
         }
         QBCore.Functions.Notify(Lang:t("info.sending_delivery_email"), 'success')
         TriggerServerEvent('qb-drugs:server:giveDeliveryItems', waitingDelivery)
@@ -247,7 +246,7 @@ function InitZones()
                 heading = v.heading,
                 minZ = v.coords.z - 1,
                 maxZ = v.coords.z + 1,
-                debugPoly = false,
+                debugPoly = true,
             }, {
                 options = {
                     {
@@ -314,7 +313,7 @@ function InitZones()
             dealerPoly[#dealerPoly+1] = BoxZone:Create(vector3(v.coords.x, v.coords.y, v.coords.z), 1.5, 1.5, {
                 heading = -20,
                 name="dealer_"..k,
-                debugPoly = false,
+                debugPoly = true,
                 minZ = v.coords.z - 1,
                 maxZ = v.coords.z + 1,
             })
@@ -370,7 +369,7 @@ RegisterNetEvent('qb-drugs:client:setLocation', function(locationData)
             heading = 0,
             minZ = activeDelivery["coords"].z - 1,
             maxZ = activeDelivery["coords"].z + 1,
-            debugPoly = false
+            debugPoly = true
         }, {
             options = {
                 {
@@ -393,7 +392,7 @@ RegisterNetEvent('qb-drugs:client:setLocation', function(locationData)
         drugDeliveryZone = BoxZone:Create(vector3(activeDelivery["coords"].x, activeDelivery["coords"].y, activeDelivery["coords"].z), 1.5, 1.5, {
             heading = 0,
             name="drugDelivery",
-            debugPoly = false,
+            debugPoly = true,
             minZ = activeDelivery["coords"].z - 1,
             maxZ = activeDelivery["coords"].z + 1,
         })
